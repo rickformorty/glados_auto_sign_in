@@ -12,10 +12,8 @@ def auto_sign(url="https://glados.network/api/user/checkin", cookie=None, proxie
     :return:
     """
     if cookie is None:
-        assert Exception("Not cookie! Please add.")
+        raise Exception("Not cookie! Please add.")
 
-    if proxies is None:
-        proxies = proxies
     headers = {
         'authority': 'glados.network',
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -50,7 +48,9 @@ if __name__ == '__main__':
     with open("config.yaml", encoding="UTF-8") as f:
         CONFIG = yaml.safe_load(f)
 
-    response = auto_sign(url=CONFIG["URL"], cookie=CONFIG["COOKIE"], proxies=CONFIG["PROXIES"])
+    # 将代理设置为None，如果你不需要代理
+    response = auto_sign(url=CONFIG["URL"], cookie=CONFIG["COOKIE"], proxies=None)
+    
     # 查看状态码（200为正确）和响应内容
     print(f'状态码：{response.status_code}')
     print(response.text)
