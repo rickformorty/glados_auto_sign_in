@@ -1,18 +1,25 @@
 name: GLaDos automation
+
 on:
   workflow_dispatch:
   schedule:
     # IMPORTANT: Set cron job in UTC timezone
-    - cron:  '0 18 * * *'
+    - cron: '0 18 * * *'
 
 jobs:
   run-python-script:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.8.0'
-      - run: pip install requests
-      - run: python src/sign.py
-      
+          python-version: '3.8.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Python script
+        run: python src/sign.py
