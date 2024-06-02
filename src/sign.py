@@ -47,7 +47,7 @@ def auto_sign(url="https://glados.network/api/user/checkin", cookie=None, proxie
 
 if __name__ == '__main__':
     # 解析配置文件
-    with open("../config.yaml", encoding="UTF-8") as f:
+    with open("config.yaml", encoding="UTF-8") as f:
         CONFIG = yaml.safe_load(f)
 
     response = auto_sign(url=CONFIG["URL"], cookie=CONFIG["COOKIE"], proxies=CONFIG["PROXIES"])
