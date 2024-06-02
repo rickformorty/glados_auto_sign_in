@@ -1,7 +1,6 @@
 import requests
 from datetime import date
 import yaml
-from send_alert_mail import send_alert_email
 
 
 def auto_sign(url="https://glados.network/api/user/checkin", cookie=None, proxies=None):
